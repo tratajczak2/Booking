@@ -1,0 +1,8 @@
+
+to run:
+
+checkout the project
+run ./gradlew test
+
+TestTwo will fail, I am unable to resolve the problem
+TestFour was modified to move .99 from 45.99 to 1153.99
