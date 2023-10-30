@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Booker {
 
-    private List<BookEntry> bookEntries = new ArrayList<>();
+    private final List<BookEntry> bookEntries = new ArrayList<>();
 
     private final int premiumCapacity;
     private final int economyCapacity;
@@ -33,22 +33,17 @@ public class Booker {
     private void bookPremium(double bid) {
         if (bookedCount(BookEntry.Kind.PREMIUM) < premiumCapacity) {
             bookEntries.add(new BookEntry(bid, BookEntry.Kind.PREMIUM));
-        };
+        }
     }
 
     private void bookEconomy(double bid) {
         if (bookedCount(BookEntry.Kind.ECONOMY) < economyCapacity) {
-            bookEntries.add(new BookEntry(bid, BookEntry.Kind.ECONOMY));
-        } else bookPremium(bid);
-    }
-
-    private boolean isUpgrade(double bid) {
-        Optional<Double> max = bookEntries
-                .stream()
-                .filter(be -> be.getKind() == BookEntry.Kind.ECONOMY)
-                .map(be -> be.getPrice())
-                .max(Comparator.naturalOrder());
-        return false; //max.isPresent() ? max.get() < bid : true;
+            if (bookedCount(BookEntry.Kind.PREMIUM) < premiumCapacity) {
+                bookEntries.add(new BookEntry(bid, BookEntry.Kind.PREMIUM));
+            } else {
+                bookEntries.add(new BookEntry(bid, BookEntry.Kind.ECONOMY));
+            }
+        }
     }
 
     private BookEntry.Kind kind(double bid) {
@@ -66,7 +61,7 @@ public class Booker {
         return bookEntries
                 .stream()
                 .filter(be -> be.getKind() == kind)
-                .map(be -> be.getPrice())
+                .map(BookEntry::getPrice)
                 .reduce(0.0, (a, b) -> a + b);
     }
 }
