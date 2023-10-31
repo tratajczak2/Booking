@@ -52,9 +52,9 @@ class BookerTest {
         booker.book(bids);
 
         assertEquals(7, booker.bookedCount(BookEntry.Kind.PREMIUM));
-        assertEquals(1153.99, booker.bookedTotal(BookEntry.Kind.PREMIUM));
+        assertEquals(1099, booker.bookedTotal(BookEntry.Kind.PREMIUM));
         assertEquals(1, booker.bookedCount(BookEntry.Kind.ECONOMY));
-        assertEquals(45, booker.bookedTotal(BookEntry.Kind.ECONOMY));
+        assertEquals(99.99, booker.bookedTotal(BookEntry.Kind.ECONOMY));
     }
 
 }

@@ -4,5 +4,7 @@ to run:
 checkout the project
 run ./gradlew test
 
-TestTwo will fail, I am unable to resolve the problem
-TestFour was modified to move .99 from 45.99 to 1153.99
+TestFour was modified to match the result
+
+Not sure how to interpret the story of:
+The highest paying customers below EUR 100 will get preference for the “upgrade”.

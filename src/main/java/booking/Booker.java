@@ -38,11 +38,9 @@ public class Booker {
 
     private void bookEconomy(double bid) {
         if (bookedCount(BookEntry.Kind.ECONOMY) < economyCapacity) {
-            if (bookedCount(BookEntry.Kind.PREMIUM) < premiumCapacity) {
-                bookEntries.add(new BookEntry(bid, BookEntry.Kind.PREMIUM));
-            } else {
-                bookEntries.add(new BookEntry(bid, BookEntry.Kind.ECONOMY));
-            }
+            bookEntries.add(new BookEntry(bid, BookEntry.Kind.ECONOMY));
+        } else {
+            bookPremium(bid);
         }
     }
 
